@@ -7,3 +7,4 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         db = Database()
         db.insert_cat_in_db()
+        db.get_products()
