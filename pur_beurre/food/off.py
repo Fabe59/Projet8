@@ -5,31 +5,44 @@ import requests
 class Database:
 
     def get_categories(self):
+        """adding categories in database"""
         for cat in CATEGORIES_LIST:
             Category.objects.create(name=cat)         
     
     def get_products(self):
+        """adding each product from each category in database with its data"""
         for cat in CATEGORIES_LIST:
             params = {
                 "action": "process",
                 "tagtype_0": "categories",
                 "tag_contains_0": "contains",
                 "tag_0": cat,
-                "page_size": 10,
+                "page_size": 50,
                 "json": 1
                 }
             response = requests.get(OFF_API_URL, params=params)
             data = response.json()
 
-            for product in data['products']:
-                brand = product.get('brands')
-                product_name = product.get('product_name_fr')
-                nutriscore = product.get('nutrition_grade_fr')
-                url = product.get('url')
-                image_url = product.get('image_front_url')
-
-                prod = Product(brand=brand, name=product_name, nutrition_grade_fr=nutriscore, url=url, image_url=image_url)
-                prod.save()
-                for category in CATEGORIES_LIST:
-                    category, _ = Category.objects.get_or_create(name=category)
-                    prod.category.add(category)
+            keys = ['brands', 'product_name_fr',
+                'nutrition_grade_fr', 'url', 'image_url']
+            for elt in data['products']:
+                product = {}
+                for key in keys:
+                    product[key] = elt.get(key)
+                if all(product.values()):
+                    prod = Product(
+                        brand=product.get('brands'),
+                        name=product.get('product_name_fr'),
+                        nutrition_grade_fr=product.get('nutrition_grade_fr'),
+                        url= product.get('url'),
+                        image_url=product.get('image_url')
+                    )
+                    prod.save()
+                
+                categories = elt.get('categories')
+                list_categories = categories.split(",")
+                for category in list_categories:
+                    category = category.strip()
+                    if category in CATEGORIES_LIST:
+                        category = Category.objects.get(name=category)
+                        prod.category.add(category)
