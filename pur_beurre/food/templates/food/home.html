@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pur beurre</title>
-</head>
-<body>
-    <div class="nav"></div>
-    <div class="title">
-        <h1>Bienvenue sur la page de Pur beurre !</h1>
-    </div>
-    <div class="substitute"></div>    
-</body>
-</html>
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+    <header class="title">
+        <h1 class="title">Du gras, oui, mais de qualité !</h1>
+        <h2 class="description">Trouver un produit de subsitution pour ceux que vous consommez tous les jours</h2>
+    </header>
+{% endblock %}
+    
+

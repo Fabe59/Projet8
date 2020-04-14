@@ -15,3 +15,6 @@ CATEGORIES_LIST = [
     'Snacks salés',
     'Tartes',
     ]
+
+KEYS = ['brands', 'product_name_fr',
+                'nutrition_grade_fr', 'stores', 'url', 'image_url']

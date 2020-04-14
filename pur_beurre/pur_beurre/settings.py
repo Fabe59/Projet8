@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'food',
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -80,7 +81,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'OCP8',
         'USER': 'fabricepringuet',
-        'PASSWORD': '*',
+        'PASSWORD': 'Marsbynight13',
         'HOST': '127.0.0.1',
         'PORT': '5432',
     }
