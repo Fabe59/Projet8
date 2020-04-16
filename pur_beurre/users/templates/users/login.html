@@ -1,0 +1,18 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+    <h1>Log In</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Log In</button>
+    </form>
+
+    <br>
+
+    <div>
+        Need An Account? <a href="{% url 'users:create' %}"> Create It</a>
+    </div>
+
+{% endblock %}

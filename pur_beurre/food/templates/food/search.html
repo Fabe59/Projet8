@@ -1,0 +1,12 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+    <h1>Résultat de la recherche :</h1>
+    
+    <ul>
+        {% for elt in search %}
+            <li>{{ elt }}</li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
