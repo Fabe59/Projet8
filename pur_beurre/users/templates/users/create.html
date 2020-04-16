@@ -1,18 +1,18 @@
 {% extends 'layouts/base.html' %}
 
 {% block content %}
-    <h1>Create an account</h1>
+    <h1>Account Creation</h1>
 
-    <form method="POST">
-        <label for="pseudo">Entrez un pseudo :</label>
-        <input type="text" name="pseudo" id="pseudo" required>
-        <br>
-        <label for="email">Entrez une adresse email :</label>
-        <input type="email" name="email" id="email" required>
-        <br>
-        <label for="pass">Password (8 characters minimum) :</label>
-        <input type="password" id="pass" name="password" minlength="8" required>
-        <br>
-        <input type="submit" value="Create my account">
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create my account</button>
     </form>
+
+    <br>
+
+    <div>
+        Already Have An Account? <a href="{% url 'users:login' %}"> Sign In</a>
+    </div>
+
 {% endblock %}

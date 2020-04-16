@@ -1,5 +1,12 @@
 <nav>
     <a href="{% url 'food:home' %}">Pur beurre</a>
-    <a href="{% url 'users:create' %}"><input type="button" value="Create an Account"></a>
-    <a href="{% url 'users:signin' %}"><input type="button" value="Sign In"></a>
+
+    {% if user.is_authenticated %}
+        <a href="{% url 'users:profile' %}"><input type="button" value="Profile"></a>
+        <a href="{% url 'users:logout' %}"><input type="button" value="Log Out"></a>
+    {% else %}
+        <a href="{% url 'users:create' %}"><input type="button" value="Create an Account"></a>
+        <a href="{% url 'users:login' %}"><input type="button" value="Log In"></a>
+    {% endif %}
+    
 </nav>
