@@ -17,7 +17,7 @@ class Database:
                 "tagtype_0": "categories",
                 "tag_contains_0": "contains",
                 "tag_0": cat,
-                "page_size": 200,
+                "page_size": 750,
                 "json": 1
                 }
             response = requests.get(OFF_API_URL, params=params)
@@ -32,7 +32,7 @@ class Database:
                         brand=product.get('brands'),
                         name=product.get('product_name_fr'),
                         nutrition_grade_fr=product.get('nutrition_grade_fr'),
-                        stores = product.get('stores'),
+                        image_nutrition_url=product.get('image_nutrition_url'),
                         url= product.get('url'),
                         image_url=product.get('image_url')
                     )

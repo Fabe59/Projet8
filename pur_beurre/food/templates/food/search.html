@@ -1,12 +1,37 @@
 {% extends 'layouts/base.html' %}
 
 {% block content %}
-    <h1>Résultat de la recherche :</h1>
+    <h1>Résultat de la recherche pour le produit : <img src = "{{ image }}"" alt="image du produit à substituer" width="7%" height=7%"> - {{ name }}</h1>
     
     <ul>
         {% for elt in search %}
             <li>{{ elt }}</li>
+            <li>Nutriscore : {{ elt.nutrition_grade_fr }}<br>
+            <a href="{% url 'food:show' elt.id %}"><img src = "{{ elt.image_url }}"" alt="image du produit {{ elt.name }}" width="12%" height=12%"></a>
+
+            <form action=# method="POST">
+                {% csrf_token %}
+                <input type="submit" value="Sauvegarder">
+            </form>
+
+            <hr>
         {% endfor %}
     </ul>
+    
+    <nav>
+        <div>
+            Page {{ search.number }} of {{ search.paginator.num_pages }}
+        </div>
+        <div>
+            {% if search.has_previous %}
+                <a href="?search={{ research }}&page=1">Première page</a>
+                <a href="?search={{ research }}&page={{ search.previous_page_number }}">Page précédente</a>
+            {% endif %}
+            {% if search.has_next %}
+                <a href="?search={{ research }}&page={{ search.next_page_number }}">Page suivante</a>
+                <a href="?search={{ research }}&page={{ search.paginator.num_pages }}">Dernière page</a>
+            {% endif %}
+        </div>
+    </nav>
 
 {% endblock %}

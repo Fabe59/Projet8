@@ -1,4 +1,5 @@
 from django.db import models
+from django.conf import settings
 
 # Create your models here.
 
@@ -14,10 +15,18 @@ class Product(models.Model):
     brand = models.CharField(max_length=250, blank=True, null=True)
     name = models.CharField(max_length=250, blank=True, null=True)
     nutrition_grade_fr = models.CharField(max_length=1, blank=True, null=True)
-    stores = models.TextField(max_length=400, blank=True, null=True)
+    image_nutrition_url = models.URLField(max_length=250, blank=True, null=True)
     url = models.URLField(max_length=250, blank=True, null=True)
     image_url = models.URLField(max_length=250, blank=True, null=True)
     category = models.ManyToManyField(Category)
 
     def __str__(self):
-        return '{} {}'.format(self.brand, self.name)
+        return '{}, {}'.format(self.brand, self.name)
+
+class Favorites(models.Model):
+    """To create the favorites table in the database"""
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    id_substitute = models.ForeignKey(Product,on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.id_substitute

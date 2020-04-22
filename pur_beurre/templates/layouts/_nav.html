@@ -1,6 +1,11 @@
 <nav>
     <a href="{% url 'food:home' %}">Pur beurre</a>
 
+    <form action="{% url 'food:search' %}" method="GET">
+        <input type="search" name="search" placeholder="Substituer un produit?" size="30px">
+        <input type="submit" value="Lancer la recherche">
+    </form>
+
     {% if user.is_authenticated %}
         <a href="{% url 'users:profile' %}"><input type="button" value="Profile"></a>
         <a href="{% url 'users:logout' %}"><input type="button" value="Log Out"></a>
