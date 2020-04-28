@@ -8,6 +8,7 @@
 
     {% if user.is_authenticated %}
         <a href="{% url 'users:profile' %}"><input type="button" value="Profile"></a>
+        <a href="{% url 'users:fav' %}"><input type="button" value="Favoris"></a>
         <a href="{% url 'users:logout' %}"><input type="button" value="Log Out"></a>
     {% else %}
         <a href="{% url 'users:create' %}"><input type="button" value="Create an Account"></a>
@@ -15,3 +16,6 @@
     {% endif %}
     
 </nav>
+
+
+

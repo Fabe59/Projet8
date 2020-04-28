@@ -1,0 +1,16 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+
+    <h1>Favoris</h1>
+
+    <ul>
+    {% for elt in liste_prod_fav %}
+        <li>{{ elt }}</li>
+        <li>Nutriscore : {{ elt.nutrition_grade_fr }}<br>
+        <a href="{% url 'food:show' elt.id %}"><img src = "{{ elt.image_url }}"" alt="image du produit {{ elt.name }}" width="10%" height=10%"></a>
+        <hr>
+    {% endfor %}
+    </ul>
+
+{% endblock %}

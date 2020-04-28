@@ -2,9 +2,8 @@
 
 {% block content %}
 
-    <img src = "{{ article.image_url }}" alt="image du produit"><br>
     {{ article.brand }} - {{ article.name }}<br>
-
+    {% include 'food/layouts/_nutriscore.html' %}
     <img src = "{{ article.image_nutrition_url }}" alt="image fiche nutritionnelle"><br>
     <a href="{{ article.url }}" target="_blank">Voir la fiche d'OpenFoodFacts</a>
 

@@ -26,7 +26,7 @@ class Product(models.Model):
 class Favorites(models.Model):
     """To create the favorites table in the database"""
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    id_substitute = models.ForeignKey(Product,on_delete=models.CASCADE)
+    substitute = models.ForeignKey(Product,on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.id_substitute
+        return '{}'.format(self.substitute)

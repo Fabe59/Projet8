@@ -1,18 +1,21 @@
 {% extends 'layouts/base.html' %}
 
 {% block content %}
-    <h1>Résultat de la recherche pour le produit : <img src = "{{ image }}"" alt="image du produit à substituer" width="7%" height=7%"> - {{ name }}</h1>
+    <h1>Résultat de la recherche pour le produit : <img src = "{{ image }}"" alt="image du produit à substituer" width="5%" height=5%"> - {{ name }}</h1>
     
     <ul>
         {% for elt in search %}
             <li>{{ elt }}</li>
             <li>Nutriscore : {{ elt.nutrition_grade_fr }}<br>
-            <a href="{% url 'food:show' elt.id %}"><img src = "{{ elt.image_url }}"" alt="image du produit {{ elt.name }}" width="12%" height=12%"></a>
+            <a href="{% url 'food:show' elt.id %}"><img src = "{{ elt.image_url }}"" alt="image du produit {{ elt.name }}" width="10%" height=10%"></a>
 
-            <form action=# method="POST">
+            {% if user.is_authenticated %}
+            <form action="{% url 'food:save' %}" method="POST">
                 {% csrf_token %}
+                <input type="hidden" name="elt" id="elt" value="{{ elt.id }}"">
                 <input type="submit" value="Sauvegarder">
             </form>
+            {% endif %}
 
             <hr>
         {% endfor %}

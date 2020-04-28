@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from .models import Product, Category
+from .models import Product, Category, Favorites
 from django.core.paginator import Paginator
+from django.contrib.auth.models import User
 
 def home(request):
     return render(request, 'food/home.html')
@@ -9,7 +10,6 @@ def search(request):
     research = request.GET['search']
     if not research:
         return render(request, 'food/home.html')
-
 
     query = Product.objects.filter(name__icontains=research)
 
@@ -29,5 +29,17 @@ def search(request):
     return render(request, 'food/search.html', {'research':research, 'name':name, 'image':image, 'search':page_obj})
 
 def show(request, id):
-    article = Product.objects.get(pk=id)
+    article = Product.objects.get(id=id)
     return render (request, 'food/show.html', {'id':id, 'article':article})
+
+def save(request):
+    if request.method == "POST":
+        current_user = request.user
+        food = request.POST.get('elt')
+        food_saved = Product.objects.get(id=food)
+        Favorites.objects.get_or_create(user=current_user, substitute=food_saved)
+    return render(request, 'food/home.html')
+
+
+
+
