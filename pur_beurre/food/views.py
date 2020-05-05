@@ -40,6 +40,9 @@ def save(request):
         Favorites.objects.get_or_create(user=current_user, substitute=food_saved)
     return render(request, 'food/home.html')
 
+def legals(request):
+    return render(request, 'food/legals.html')
+
 
 
 

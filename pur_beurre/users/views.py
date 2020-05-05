@@ -35,5 +35,20 @@ def fav(request):
     for id in favs_id:
         liste_prod_fav.append(Product.objects.get(id=id))
 
-    return render(request, 'users/fav.html', {'liste_prod_fav':liste_prod_fav})
+    paginator = Paginator(liste_prod_fav, 6)
+    page_number = request.GET.get('page')
+    page_fav = paginator.get_page(page_number)
 
+    return render(request, 'users/fav.html', {'liste_prod_fav':page_fav})
+
+def delete_fav(request):
+    if request.method == "POST":
+        user = request.user
+        elt = request.POST.get('elt')
+        elt = Product.objects.get(id=elt)
+        elt_delete = Favorites.objects.filter(user=user, substitute=elt)
+        elt_delete.delete()
+    return render(request, 'food/home.html')
+
+
+    return render(request, 'food/home.html')

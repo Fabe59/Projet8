@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'food',
     'users',
+    'crispy_forms',
 ]
 
 MIDDLEWARE = [
@@ -131,3 +132,5 @@ STATICFILES_DIRS = [
 
 LOGIN_REDIRECT_URL = 'food:home'
 LOGIN_URL = 'users:login'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

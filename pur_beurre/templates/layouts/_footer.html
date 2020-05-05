@@ -1,3 +1,5 @@
-<footer>
-    <p>&copy; Copyright {% now 'Y' %} &middot; Pur Beurre &middot; All rights reserved</p>
+<footer class="bg-light py-5 d-flex">
+    <div class="col-lg-4 text-center"><a href="{% url 'food:legals' %}">Mentions légales</a></div>
+    <div class="col-lg-4 small text-center">&copy; Copyright {% now 'Y' %} &middot; Pur Beurre &middot; All rights reserved</div></div>
+    <div class="col-lg-4 text-center"><a href="{% url 'food:home' %}#contact">Contact</div>
 </footer>
