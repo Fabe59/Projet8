@@ -4678,8 +4678,8 @@ a.badge:hover, a.badge:focus {
 }
 
 .badge-moules {
-  color: #E8A75D;
-  background-color: #345A61;
+  color: black;
+  background-color: #86EBE6;
 }
 
 .badge-primary {
@@ -9823,7 +9823,8 @@ a.text-dark:hover, a.text-dark:focus {
 
 .text-muted {
   color: #fff !important;
-  text-align: left;
+  text-align: center;
+  display: none;
 }
 
 .text-black-50 {
@@ -10223,6 +10224,26 @@ img.product-image {
   color: white;
 }
 
+#div_id_username div {
+  display:flex;
+  }
+
+#div_id_email div {
+  display: flex;
+}
+
+#div_id_password div {
+  display: flex;
+}
+
+#div_id_password1 div {
+  display: flex;
+}
+
+#div_id_password2 div {
+  display: flex;
+}
+
 .img_show {
   vertical-align: middle;
   border-style: none;
@@ -10236,4 +10257,39 @@ img.product-image {
   border-radius: 4px;
   cursor: pointer; 
   text-decoration: none;
+}
+
+.cookie-container {
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  right: 0;
+  background: #2f3640;
+  color: #f5f6fa;
+  padding: 10px 32px;
+  box-shadow: 0 -2px 16px rgba(47, 54, 64, 0.39);
+  z-index: 1000;
+
+  transition: 400ms;
+}
+
+.cookie-container.active {
+  bottom: 0;
+}
+
+p.cookieparagraph {
+  margin-top: 0;
+  margin-block-end: 0;
+  text-align: center;
+}
+
+.cookie-btn {
+  background: #e84118;
+  border: 0;
+  color: #f5f6fa;
+  padding: 12px 30px;
+  font-size: 18px;
+  border-radius: 8px;
+  display: flex;
+  margin: 10px auto 5px;
 }

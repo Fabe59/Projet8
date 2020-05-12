@@ -1,18 +1,17 @@
 OFF_API_URL = "https://fr.openfoodfacts.org/cgi/search.pl?"
 
 CATEGORIES_LIST = [
+    'Apéritif',
     'Boissons sans alcool',
     'Confitures',
-    'Desserts',
-    'Gâteaux',
+    'Biscuits et gâteaux',
     'Pâtes à tartiner',
-    'Petit-déjeuners',
     'Pizzas',
     'Plats préparés',
     'Salades composées',
     'Sandwichs',
-    'Snacks salés',
     'Tartes',
+    'Yaourts',
     ]
 
 KEYS = ['brands', 'product_name_fr',

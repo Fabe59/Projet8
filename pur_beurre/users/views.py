@@ -12,10 +12,10 @@ def create(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            raw_password = form.cleaned_data.get('password1')
-            user = authenticate(username=username, password=raw_password)
+            password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=password)
             login(request, user)
-            return redirect('food:home')
+            return redirect('users:profile')
     else:
         form = CustomUserCreationForm()
     return render(request, 'users/create.html', {'form': form})
@@ -50,5 +50,3 @@ def delete_fav(request):
         elt_delete.delete()
     return render(request, 'food/home.html')
 
-
-    return render(request, 'food/home.html')
