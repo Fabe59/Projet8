@@ -1,12 +1,14 @@
-from django.test import TestCase, Client
+from django.test import TestCase
 from django.urls import reverse, resolve
 from food.views import home, search, show, save, legals
 from food.models import Category, Product, Favorites
-from users.views import create, profile, fav, login, delete_fav
+from users.views import create, profile, fav, delete_fav
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.models import User
 
 """Test de l'app Food"""
+
+
 class Food_Url_Test(TestCase):
 
     def test_home_url_resolves(self):
@@ -28,7 +30,8 @@ class Food_Url_Test(TestCase):
     def test_legals_url_resolves(self):
         url = reverse('food:legals')
         self.assertEquals(resolve(url).func, legals)
-    
+
+
 class ModelsTest(TestCase):
 
     def test_cat_insertion(self):
@@ -47,6 +50,7 @@ class ModelsTest(TestCase):
         prod = Product.objects.create(brand='LU', name='BN')
         self.assertEqual(str(prod), 'LU, BN')
 
+
 class HomepageViews(TestCase):
 
     def test_homepage(self):
@@ -54,12 +58,14 @@ class HomepageViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'food/home.html')
 
+
 class LegalsViews(TestCase):
 
     def test_legals(self):
         response = self.client.get(reverse('food:legals'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'food/legals.html')
+
 
 class SearchViews(TestCase):
 
@@ -70,21 +76,21 @@ class SearchViews(TestCase):
             'name': 'Nutella',
             'nutrition_grade_fr': "e",
             'image_nutrition_url': 'https://nutnut.jpg',
-            'url': 'https://fr.openfoodfacts.org/produit/3017620429484/nutella-ferrero',
             'image_url': 'https://nut.jpg',
         }
         nutella = Product.objects.create(**nutella)
         self.nutella = nutella
 
     def test_foodsearch_valid(self):
-        response = self.client.get('/search/?search=%s' %('nutella'))
+        response = self.client.get('/search/?search=%s' % ('nutella'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'food/nosubstitute.html')
 
     def test_foodsearch_empty(self):
-        response = self.client.get('/search/?search=%s' %(''))
+        response = self.client.get('/search/?search=%s' % (''))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'food/home.html')
+
 
 class ShowViews(TestCase):
 
@@ -95,7 +101,6 @@ class ShowViews(TestCase):
             'name': 'Nutella',
             'nutrition_grade_fr': "e",
             'image_nutrition_url': 'https://nutnut.jpg',
-            'url': 'https://fr.openfoodfacts.org/produit/3017620429484/nutella-ferrero',
             'image_url': 'https://nut.jpg',
         }
         nutella = Product.objects.create(**nutella)
@@ -103,9 +108,10 @@ class ShowViews(TestCase):
 
     def test_foodshow_valid(self):
         id = self.nutella.id
-        response = self.client.get('/product/%d' %(id))
+        response = self.client.get('/product/%d' % (id))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'food/show.html')
+
 
 class SaveViews(TestCase):
 
@@ -113,7 +119,11 @@ class SaveViews(TestCase):
         self.username = 'papa'
         self.email = 'papa@aol.com'
         self.password = 'megamotdepasse'
-        self.user = User.objects.create_user(self.username, self.email, self.password)
+        self.user = User.objects.create_user(
+                 self.username,
+                 self.email,
+                 self.password
+                 )
 
         nutella = {
             'id': '312',
@@ -121,7 +131,6 @@ class SaveViews(TestCase):
             'name': 'Nutella',
             'nutrition_grade_fr': "e",
             'image_nutrition_url': 'https://nutnut.jpg',
-            'url': 'https://fr.openfoodfacts.org/produit/3017620429484/nutella-ferrero',
             'image_url': 'https://nut.jpg',
         }
         nutella = Product.objects.create(**nutella)
@@ -136,21 +145,23 @@ class SaveViews(TestCase):
         self.assertTrue(Favorites.objects.all().exists())
 
 
-"""Test de l'app Users"""        
+"""Test de l'app Users"""
+
+
 class Users_Url_Test(TestCase):
 
     def test_create_url_resolves(self):
         url = reverse('users:create')
         self.assertEquals(resolve(url).func, create)
 
-    def test_prfile_url_resolves(self):
+    def test_profile_url_resolves(self):
         url = reverse('users:profile')
         self.assertEquals(resolve(url).func, profile)
-    
+
     def test_fav_url_resolves(self):
         url = reverse('users:fav')
         self.assertEquals(resolve(url).func, fav)
-    
+
     def test_delete_fav_url_resolves(self):
         url = reverse('users:delete_fav')
         self.assertEquals(resolve(url).func, delete_fav)
@@ -163,13 +174,14 @@ class Users_Url_Test(TestCase):
         url = reverse('users:logout')
         self.assertEquals(resolve(url).func.view_class, auth_views.LogoutView)
 
+
 class CreateViews(TestCase):
 
     def test_create_page(self):
         response = self.client.get(reverse('users:create'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'users/create.html')
-        
+
     def test_create_account_valid(self):
         response = self.client.post(reverse('users:create'), {
             'username': 'usernametest',
@@ -179,13 +191,18 @@ class CreateViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed('users:profile')
 
+
 class LoginViews(TestCase):
 
     def setUp(self):
         self.username = 'papa'
         self.email = 'papa@aol.com'
         self.password = 'megamotdepasse'
-        self.user = User.objects.create_user(self.username, self.email, self.password)
+        self.user = User.objects.create_user(
+                self.username,
+                self.email,
+                self.password
+                )
 
     def test_login(self):
         self.client.login(username=self.username, password=self.password)
@@ -193,38 +210,49 @@ class LoginViews(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'users/login.html')
 
+
 class Logoutviews(TestCase):
 
     def setUp(self):
         self.username = 'papa'
         self.email = 'papa@aol.com'
         self.password = 'megamotdepasse'
-        self.user = User.objects.create_user(self.username, self.email, self.password)
+        self.user = User.objects.create_user(
+                self.username,
+                self.email,
+                self.password
+                )
 
     def test_logout(self):
         self.client.login(username=self.username, password=self.password)
         response = self.client.get(reverse('users:logout'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'users/logout.html')
-    
+
+
 class ProfileViews(TestCase):
 
     def setUp(self):
         self.username = 'papa'
         self.email = 'papa@aol.com'
         self.password = 'megamotdepasse'
-        self.user = User.objects.create_user(self.username, self.email, self.password)
+        self.user = User.objects.create_user(
+                self.username,
+                self.email,
+                self.password
+                )
 
     def test_account_when_logged_in(self):
         self.client.login(username=self.username, password=self.password)
         response = self.client.get(reverse('users:profile'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'users/profile.html')
-    
+
     def test_account_when_logged_out(self):
         response = self.client.get(reverse('users:profile'))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, '/users/login/?next=/users/profile/')
+
 
 class FavViews(TestCase):
 
@@ -232,21 +260,24 @@ class FavViews(TestCase):
         self.username = 'papa'
         self.email = 'papa@aol.com'
         self.password = 'megamotdepasse'
-        self.user = User.objects.create_user(self.username, self.email, self.password)
+        self.user = User.objects.create_user(
+                self.username,
+                self.email,
+                self.password
+                )
 
-        #nutella = {
-        #    'id': '312',
-        #    'brand': 'Ferrero',
-        #    'name': 'Nutella',
-        #    'nutrition_grade_fr': "e",
-        #    'image_nutrition_url': 'https://nutnut.jpg',
-        #    'url': 'https://fr.openfoodfacts.org/produit/3017620429484/nutella-ferrero',
-        #    'image_url': 'https://nut.jpg',
-        #}
-        #nutella = Product.objects.create(**nutella)
-        #self.nutella = nutella
-        #food_saved = Product.objects.get(id=self.nutella.id)
-        #Favorites.objects.create(user=self.user, substitute=food_saved)
+        nutella = {
+            'id': '312',
+            'brand': 'Ferrero',
+            'name': 'Nutella',
+            'nutrition_grade_fr': "e",
+            'image_nutrition_url': 'https://nutnut.jpg',
+            'image_url': 'https://nut.jpg',
+        }
+        nutella = Product.objects.create(**nutella)
+        self.nutella = nutella
+        food_saved = Product.objects.get(id=self.nutella.id)
+        Favorites.objects.create(user=self.user, substitute=food_saved)
 
     def test_fav_when_logged_in(self):
         self.client.login(username=self.username, password=self.password)
@@ -258,5 +289,3 @@ class FavViews(TestCase):
         response = self.client.get(reverse('users:fav'))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, '/users/login/?next=/users/fav/')
-
-

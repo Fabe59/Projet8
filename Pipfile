@@ -12,6 +12,8 @@ django-crispy-forms = "*"
 django-classy-tags = "*"
 django-cookie-law = "*"
 coverage = "*"
+flake8 = "*"
+selenium = "*"
 
 [requires]
 python_version = "3.8"

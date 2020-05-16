@@ -12,7 +12,7 @@
                     {% csrf_token %}
                     {{ form|crispy }}
                     <br>
-                    <input class="btn btn-primary btn-xl js-scroll-trigger" type="submit" value="Se connecter">
+                    <input class="btn btn-primary btn-xl js-scroll-trigger" id="button-submit" type="submit" value="Se connecter">
                 </form>
                 <div class="account">
                     <br>Envie d'un compte? <a href="{% url 'users:create' %}"> Créez le ici !</a>

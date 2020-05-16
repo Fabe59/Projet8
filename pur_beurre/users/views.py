@@ -2,9 +2,9 @@ from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
 from .forms import CustomUserCreationForm
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 from food.models import Favorites, Product
 from django.core.paginator import Paginator
+
 
 def create(request):
     if request.method == 'POST':
@@ -20,10 +20,12 @@ def create(request):
         form = CustomUserCreationForm()
     return render(request, 'users/create.html', {'form': form})
 
+
 @login_required
 def profile(request):
     return render(request, 'users/profile.html')
-    
+
+
 @login_required
 def fav(request):
     user = request.user
@@ -39,7 +41,8 @@ def fav(request):
     page_number = request.GET.get('page')
     page_fav = paginator.get_page(page_number)
 
-    return render(request, 'users/fav.html', {'liste_prod_fav':page_fav})
+    return render(request, 'users/fav.html', {'liste_prod_fav': page_fav})
+
 
 def delete_fav(request):
     if request.method == "POST":
@@ -49,4 +52,3 @@ def delete_fav(request):
         elt_delete = Favorites.objects.filter(user=user, substitute=elt)
         elt_delete.delete()
     return render(request, 'food/home.html')
-

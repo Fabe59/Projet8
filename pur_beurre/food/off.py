@@ -2,13 +2,14 @@ from food.constants import CATEGORIES_LIST, OFF_API_URL, KEYS
 from food.models import Category, Product
 import requests
 
+
 class Database:
 
     def get_categories(self):
         """adding categories in database"""
         for cat in CATEGORIES_LIST:
-            Category.objects.create(name=cat)         
-    
+            Category.objects.create(name=cat)
+
     def get_products(self):
         """adding each product from each category in database with its data"""
         for cat in CATEGORIES_LIST:
@@ -17,7 +18,7 @@ class Database:
                 "tagtype_0": "categories",
                 "tag_contains_0": "contains",
                 "tag_0": cat,
-                "page_size": 750,
+                "page_size": 250,
                 "json": 1
                 }
             response = requests.get(OFF_API_URL, params=params)
@@ -28,16 +29,19 @@ class Database:
                 for key in KEYS:
                     product[key] = elt.get(key)
                 if all(product.values()):
-                    prod = Product(
-                        brand=product.get('brands'),
-                        name=product.get('product_name_fr'),
-                        nutrition_grade_fr=product.get('nutrition_grade_fr'),
-                        image_nutrition_url=product.get('image_nutrition_url'),
-                        url= product.get('url'),
-                        image_url=product.get('image_url')
-                    )
-                    prod.save()
-                
+                    verify = Product.objects.filter(openff_id=product.get('id'))
+                    if not verify:
+                        prod = Product(
+                            brand=product.get('brands'),
+                            name=product.get('product_name_fr'),
+                            nutrition_grade_fr=product.get('nutrition_grade_fr'),
+                            image_nutrition_url=product.get('image_nutrition_url'),
+                            url=product.get('url'),
+                            image_url=product.get('image_url'),
+                            openff_id=product.get('id'),
+                        )
+                prod.save()
+
                 categories = elt.get('categories')
                 list_categories = categories.split(",")
                 for category in list_categories:
