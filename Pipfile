@@ -14,6 +14,8 @@ django-cookie-law = "*"
 coverage = "*"
 flake8 = "*"
 selenium = "*"
+django-heroku = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.8"

@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
+import django_heroku
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -23,9 +25,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '_m6!#ahgfbha=-!hzg9@nor#=3mgayvz8k%$-a2!u(#^7z+8z$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False if os.environ.get("ENV", "development") == "production" else True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.herokuapps.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -139,3 +141,5 @@ LOGIN_REDIRECT_URL = 'food:home'
 LOGIN_URL = 'users:login'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+django_heroku.settings(locals())
