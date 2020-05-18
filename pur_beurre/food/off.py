@@ -18,7 +18,7 @@ class Database:
                 "tagtype_0": "categories",
                 "tag_contains_0": "contains",
                 "tag_0": cat,
-                "page_size": 500,
+                "page_size": 400,
                 "json": 1
                 }
             response = requests.get(OFF_API_URL, params=params)
