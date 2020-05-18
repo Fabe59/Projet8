@@ -15,17 +15,20 @@ class Chrome_Login_Logout_FunctionalTestCase(StaticLiveServerTestCase):
         self.browser.maximize_window()
 
         User = get_user_model()
-        User.objects.create_user(username="UsernameTest", password="PasswordTest2020")
-        
+        User.objects.create_user(
+            username="UsernameTest",
+            password="PasswordTest2020"
+        )
 
     def tearDown(self):
         self.browser.close()
 
-
     def test_user_can_connect_and_disconnect(self):
         self.browser.find_element_by_css_selector('#button-login').click()
-        self.browser.find_element_by_css_selector('#id_username').send_keys("UsernameTest")
-        self.browser.find_element_by_css_selector('#id_password').send_keys("PasswordTest2020")
+        user = self.browser.find_element_by_css_selector('#id_username')
+        user.send_keys("UsernameTest")
+        password = self.browser.find_element_by_css_selector('#id_password')
+        password.send_keys("PasswordTest2020")
         self.browser.find_element_by_css_selector('#button-submit').click()
         self.browser.find_element_by_css_selector('#button-logout').click()
         self.assertTemplateUsed('users/logout.html')

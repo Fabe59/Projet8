@@ -29,13 +29,16 @@ class Database:
                 for key in KEYS:
                     product[key] = elt.get(key)
                 if all(product.values()):
-                    verify = Product.objects.filter(openff_id=product.get('id'))
+                    verify = Product.objects.filter(
+                        openff_id=product.get('id'))
                     if not verify:
                         prod = Product(
                             brand=product.get('brands'),
                             name=product.get('product_name_fr'),
-                            nutrition_grade_fr=product.get('nutrition_grade_fr'),
-                            image_nutrition_url=product.get('image_nutrition_url'),
+                            nutrition_grade_fr=product.get(
+                                'nutrition_grade_fr'),
+                            image_nutrition_url=product.get(
+                                'image_nutrition_url'),
                             url=product.get('url'),
                             image_url=product.get('image_url'),
                             openff_id=product.get('id'),
