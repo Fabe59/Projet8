@@ -1,3 +1,9 @@
+
+"""
+Module that uses the OpenFoodFacts API to collect
+all the data needed for the pur_beurre database
+"""
+
 from django.core.management.base import BaseCommand
 from food.off import Database
 

@@ -5,7 +5,7 @@ from django.conf import settings
 
 
 class Category(models.Model):
-    """To create the Category table in the database"""
+    """Create the Category table in the database"""
 
     name = models.CharField(max_length=250)
 
@@ -14,7 +14,7 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    """To create the Product table in the database"""
+    """Create the Product table in the database"""
 
     brand = models.CharField(max_length=250, blank=True, null=True)
     name = models.CharField(max_length=250, blank=True, null=True)
@@ -31,7 +31,7 @@ class Product(models.Model):
 
 
 class Favorites(models.Model):
-    """To create the favorites table in the database"""
+    """Create the favorites table in the database"""
 
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

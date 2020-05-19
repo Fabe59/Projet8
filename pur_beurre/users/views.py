@@ -7,6 +7,9 @@ from django.core.paginator import Paginator
 
 
 def create(request):
+    """View to the user account creation page
+    and validation of the user form"""
+
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
@@ -23,11 +26,15 @@ def create(request):
 
 @login_required
 def profile(request):
+    """View to the user account information page."""
+
     return render(request, 'users/profile.html')
 
 
 @login_required
 def fav(request):
+    """View to the user's personal selection of healthy food"""
+
     user = request.user
     favs = Favorites.objects.filter(user=user)
     favs_id = []
@@ -45,6 +52,9 @@ def fav(request):
 
 
 def delete_fav(request):
+    """View that allows a user to remove
+    a substitute from their favorites"""
+
     if request.method == "POST":
         user = request.user
         elt = request.POST.get('elt')

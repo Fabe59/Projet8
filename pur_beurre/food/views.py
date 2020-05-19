@@ -4,10 +4,14 @@ from django.core.paginator import Paginator
 
 
 def home(request):
+    """Function to display the home page template"""
+
     return render(request, 'food/home.html')
 
 
 def search(request):
+    """Function to manage the search and its display"""
+
     research = request.GET['search']
 
     if not research:
@@ -54,11 +58,15 @@ def search(request):
 
 
 def show(request, id):
+    """Function to display the food specific information page"""
+
     article = Product.objects.get(id=id)
     return render(request, 'food/show.html', {'article': article})
 
 
 def save(request):
+    """Function which allows the user to save a substitute in his database"""
+
     if request.method == "POST":
         current_user = request.user
         food = request.POST.get('elt')
@@ -71,4 +79,6 @@ def save(request):
 
 
 def legals(request):
+    """Function to display the legals template"""
+
     return render(request, 'food/legals.html')

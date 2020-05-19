@@ -6,12 +6,14 @@ import requests
 class Database:
 
     def get_categories(self):
-        """adding categories in database"""
+        """Add categories in database"""
+
         for cat in CATEGORIES_LIST:
             Category.objects.create(name=cat)
 
     def get_products(self):
-        """adding each product from each category in database with its data"""
+        """Add each product from each category in database with its data"""
+
         for cat in CATEGORIES_LIST:
             params = {
                 "action": "process",
@@ -28,7 +30,9 @@ class Database:
                 product = {}
                 for key in KEYS:
                     product[key] = elt.get(key)
+                """Test if all 'products' keys have a value"""
                 if all(product.values()):
+                    """Test if a product is already present in the database"""
                     verify = Product.objects.filter(
                         openff_id=product.get('id'))
                     if not verify:
@@ -45,6 +49,7 @@ class Database:
                         )
                 prod.save()
 
+                """Associate each product to its categories"""
                 categories = elt.get('categories')
                 list_categories = categories.split(",")
                 for category in list_categories:
