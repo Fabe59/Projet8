@@ -3,6 +3,7 @@ from django.urls import reverse, resolve
 from food.views import home, search, show, save, legals
 from food.models import Category, Product, Favorites
 from users.views import create, profile, fav, delete_fav
+from users.forms import CustomUserCreationForm
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.models import User
 
@@ -173,6 +174,36 @@ class Users_Url_Test(TestCase):
     def test_logout_url_resolves(self):
         url = reverse('users:logout')
         self.assertEquals(resolve(url).func.view_class, auth_views.LogoutView)
+
+
+class Users_Form_TestCase(TestCase):
+
+    def test_user_creation_forms_is_valid(self):
+        form = CustomUserCreationForm(data={
+            "username": "Paulo",
+            "email": "paulo@free.fr",
+            "password1": "Purbeurre2020",
+            "password2": "Purbeurre2020"
+            })
+        self.assertTrue(form.is_valid())
+
+    def test_user_creation_forms_is_not_valid(self):
+        form = CustomUserCreationForm(data={
+            "username": "Paulo",
+            "email": "paulo@free.fr",
+            "password1": "Purbeurre2020",
+            "password2": "Azerty"
+        })
+        self.assertFalse(form.is_valid())
+
+    def test_user_creation_forms_email_is_not_valid(self):
+        form = CustomUserCreationForm(data={
+            "username": "Paulo",
+            "email": "Paulo.fr",
+            "password1": "Purbeurre2020",
+            "password2": "Purbeurre2020"
+        })
+        self.assertFalse(form.is_valid())
 
 
 class CreateViews(TestCase):

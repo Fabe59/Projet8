@@ -26,7 +26,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '_m6!#ahgfbha=-!hzg9@nor#=3mgayvz8k%$-a2!u(#^7z+8z$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False if os.environ.get("ENV", "development") == "production" else True
+DEBUG = True
 
 ALLOWED_HOSTS = ['.herokuapps.com', 'localhost', '127.0.0.1']
 
@@ -144,4 +144,5 @@ LOGIN_URL = 'users:login'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-django_heroku.settings(locals())
+if os.environ.get("ENV") == "production":
+    django_heroku.settings(locals())
