@@ -12,11 +12,7 @@ class CreateViews(TestCase):
         self.assertTemplateUsed(response, 'users/create.html')
 
     def test_create_account_valid(self):
-        response = self.client.post(reverse('users:create'), {
-            'username': 'usernametest',
-            'email': 'emailtest@free.fr',
-            'password': 'megamotdepasse'
-        })
+        response = self.client.post(reverse('users:create'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed('users:profile')
 
