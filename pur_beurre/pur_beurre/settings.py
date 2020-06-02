@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 
-import django_heroku
+#import django_heroku
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -135,7 +135,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "staticfiles"),
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
@@ -144,5 +144,5 @@ LOGIN_URL = 'users:login'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-if os.environ.get("ENV") == "production":
-    django_heroku.settings(locals())
+#if os.environ.get("ENV") == "production":
+#    django_heroku.settings(locals())
