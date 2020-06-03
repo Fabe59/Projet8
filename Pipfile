@@ -17,6 +17,7 @@ selenium = "*"
 django-heroku = "*"
 gunicorn = "*"
 requests = "*"
+tchappui-webdrivers = "*"
 
 [requires]
 python_version = "3.6"

@@ -3,13 +3,20 @@ language: python
 python:
   - '3.6'
 
+addons:
+  chrome: stable
+
 branches:
   only:
     - pur_beurre_P10
     
-before_script:
+install:
   - pip install pipenv
   - pipenv install --dev
+
+before_script:
+  # ajouter tchappui-webdrivers dans requirements.txt
+  - install-webdrivers
 
 env:
   global:
@@ -19,4 +26,4 @@ services:
   - postgresql
 
 script:
-  - python manage.py test
+  - python manage.py test -v2
