@@ -1,0 +1,16 @@
+language: python
+
+python:
+  - '3.6'
+
+branches:
+  only:
+    - pur_beurre_P10
+
+env: DJANGO_SETTINGS_MODULE="pur_beurre.settings.travis"
+
+services:
+  - postgresql
+
+script:
+  - python manage.py test
