@@ -6,11 +6,17 @@ python:
 branches:
   only:
     - pur_beurre_P10
+    
+before_script:
+  - pip install pipenv
+  - pipenv install --dev
 
-env: DJANGO_SETTINGS_MODULE="pur_beurre.settings.travis"
+env:
+  global:
+    - DJANGO_SETTINGS_MODULE="pur_beurre.settings.travis"
 
 services:
   - postgresql
 
 script:
-  - python manage.py test
+  - python manage.py test -v2
