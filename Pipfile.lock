@@ -1,7 +1,11 @@
 {
     "_meta": {
         "hash": {
+<<<<<<< HEAD
             "sha256": "99604ce1daf88bd850ecd46b33f95c2673e28bc11a8ed78348cbfc36fd271669"
+=======
+            "sha256": "042fb301c389558d4b22a3e1b38a41c2827238fb751436442eb089ab1e25e96e"
+>>>>>>> 42bd0415b6faca4a0e7da2c469802dd6f56f47da
         },
         "pipfile-spec": 6,
         "requires": {
@@ -37,6 +41,13 @@
                 "sha256:fc323ffcaeaed0e0a02bf4d117757b98aed530d9ed4531e3e15460124c106691"
             ],
             "version": "==3.0.4"
+        },
+        "click": {
+            "hashes": [
+                "sha256:d2b5255c7c6349bc1bd1e59e08cd12acbbd63ce649f2588755783aa94dfb6b1a",
+                "sha256:dacca89f4bfadd5de3d7489b7c8a566eee0d3676333fbb50030263894c38c0dc"
+            ],
+            "version": "==7.1.2"
         },
         "coverage": {
             "hashes": [
@@ -239,7 +250,10 @@
                 "sha256:30639c035cdb23534cd4aa2dd52c3bf48f06e5f4a941509c8bafd8ce11080259",
                 "sha256:8b74bedcbbbaca38ff6d7491d76f2b06b3592611af620f8426e82dddb04a5ced"
             ],
+<<<<<<< HEAD
             "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
+=======
+>>>>>>> 42bd0415b6faca4a0e7da2c469802dd6f56f47da
             "version": "==1.15.0"
         },
         "sqlparse": {
@@ -249,6 +263,14 @@
             ],
             "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
             "version": "==0.3.1"
+        },
+        "tchappui-webdrivers": {
+            "hashes": [
+                "sha256:29f4e57a1a19a49949c77e9ebf13d6aea9ea3620fb3cc2517fa48fdcb726d180",
+                "sha256:a208d78093adc8528407a1473f2e44da372f94896a7c1c788379531c8b73580e"
+            ],
+            "index": "pypi",
+            "version": "==0.2.0"
         },
         "urllib3": {
             "hashes": [
@@ -262,6 +284,7 @@
             "hashes": [
                 "sha256:60154b976a13901414a25b0273a841145f77eb34a141f9ae032a0ace3e4d5b27",
                 "sha256:6dd26bfda3af29177d8ab7333a0c7b7642eb615ce83764f4d15a9aecda3201c4"
+<<<<<<< HEAD
             ],
             "version": "==5.1.0"
         },
@@ -272,6 +295,10 @@
             ],
             "markers": "python_version >= '3.6'",
             "version": "==3.1.0"
+=======
+            ],
+            "version": "==5.1.0"
+>>>>>>> 42bd0415b6faca4a0e7da2c469802dd6f56f47da
         }
     },
     "develop": {}
