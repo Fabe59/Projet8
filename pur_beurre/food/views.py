@@ -82,3 +82,4 @@ def legals(request):
     """Function to display the legals template"""
 
     return render(request, 'food/legals.html')
+
