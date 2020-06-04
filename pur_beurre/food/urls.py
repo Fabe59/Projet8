@@ -11,5 +11,5 @@ urlpatterns = [
     path('product/<int:id>', views.show, name="show"),
     path('save/', views.save, name="save"),
     path('legals/', views.legals, name="legals"),
-     path('sentry-debug/', trigger_error),
+    path('sentry-debug/', trigger_error),
 ]
