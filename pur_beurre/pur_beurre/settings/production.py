@@ -17,14 +17,10 @@ DATABASES = {
 }
 
 sentry_sdk.init(
-    dsn="https://f335ae6a40c24808aa5137fe6f6013a2@o402720.ingest.sentry.io/5264251",
+    dsn="https://b034650fac4846809cb320efa07cc7e2@o402720.ingest.sentry.io/5265819",
     integrations=[DjangoIntegration()],
 
     # If you wish to associate users to errors (assuming you are using
     # django.contrib.auth) you may enable sending PII data.
     send_default_pii=True
-<<<<<<< HEAD
 )
-=======
-)
->>>>>>> 1a5e1e85d9074e4dc929d5a0678e5c1cd75232b3
