@@ -2,6 +2,7 @@ from django.core.management.base import BaseCommand
 from food.constants import CATEGORIES_LIST, OFF_API_URL, KEYS
 from food.models import Category, Product
 import requests
+from sentry_sdk import capture_message
 
 class Command(BaseCommand):
 
@@ -51,5 +52,6 @@ class Command(BaseCommand):
                                 category = Category.objects.get(name=category)
                                 prod.category.add(category)
 
+        capture_message("Commande cron exécutée (DbUpdate)", level="info")
         self.stdout.write('Commande DbUpdate exécutée !')
 
