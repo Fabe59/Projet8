@@ -20,5 +20,3 @@ __=> Online:__
 Feel free to use it: "https://feedpurbeurre.herokuapp.com/"  
 
 _Enjoy it !_
-
-Fabe59
